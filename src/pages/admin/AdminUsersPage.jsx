@@ -32,6 +32,8 @@ export const AdminUsersPage = () => {
               <TableCell>ID</TableCell>
               <TableCell>Имя</TableCell>
               <TableCell>Email</TableCell>
+              <TableCell>Адрес</TableCell>
+              <TableCell>Телефон</TableCell>
               <TableCell>Роль</TableCell>
             </TableRow>
           </TableHead>
@@ -41,6 +43,8 @@ export const AdminUsersPage = () => {
                 <TableCell>{user.id}</TableCell>
                 <TableCell>{user.name}</TableCell>
                 <TableCell>{user.email}</TableCell>
+                <TableCell>{user.address}</TableCell>
+                <TableCell>{user.phone}</TableCell>
                 <TableCell>{user.role}</TableCell>
               </TableRow>
             ))}
