@@ -1,4 +1,4 @@
-import { Typography, Box, Alert, Grid, Stack } from "@mui/material";
+import { Typography, Box, Paper, Grid, Stack } from "@mui/material";
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import VerifiedIcon from '@mui/icons-material/Verified';
@@ -56,25 +56,24 @@ export const AboutPage = () => (
       </Grid>
     </Grid>
 
-    <Alert
-      icon={false}
-      severity="info"
-      variant="outlined"
+    <Paper
+      elevation={0}
       sx={{
         mt: 6,
-        py: 2,
-        justifyContent: 'center',
+        p: 4,
+        bgcolor: 'grey.50',
+        borderLeft: '5px solid',
         borderColor: 'primary.main',
+        borderRadius: '4px'
       }}
     >
       <Typography
-        variant="h6"
-        component="p"
+        variant="h5"
         align="center"
-        sx={{ fontStyle: 'italic', color: 'primary.dark', fontWeight: 400 }}
+        sx={{ fontStyle: 'italic', color: 'text.secondary', lineHeight: 1.5 }}
       >
         «Мы не просто продаем игрушки, мы помогаем вырастить любознательное и счастливое поколение»
       </Typography>
-    </Alert>
+    </Paper>
   </Box>
 );

@@ -8,7 +8,8 @@ import {
   ListItemText,
   Typography,
   Divider,
-  Button
+  Button,
+  CircularProgress
 } from "@mui/material";
 
 import HomeIcon from "@mui/icons-material/Home";
@@ -18,14 +19,16 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import {useNavigate} from "react-router-dom";
+import {useAuth} from "../context/AuthContext.jsx";
 
 const drawerWidth = 240;
 
 export const SideBar = () => {
   const navigate = useNavigate();
 
-  const isLoggedIn = false;
-  const userName = "Иван Иванов";
+  const { user, logout, loading } = useAuth()
+
+  if (loading) return <CircularProgress />
 
   return (
     <Drawer
@@ -77,12 +80,12 @@ export const SideBar = () => {
 
       <Divider />
       <Box sx={{ p: 2 }}>
-        {isLoggedIn ? (
+        {user ? (
           <Box>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 1, gap: 1 }}>
               <AccountCircleIcon color="primary" />
               <Typography variant="body2" noWrap sx={{ fontWeight: 600 }}>
-                {userName}
+                {user.name || "Пользователь"}
               </Typography>
             </Box>
             <Button
@@ -91,7 +94,10 @@ export const SideBar = () => {
               fullWidth
               size="small"
               startIcon={<LogoutIcon />}
-              onClick={() => console.log("Выход")}
+              onClick={() => {
+                logout();
+                navigate("/login");
+              }}
             >
               Выйти
             </Button>
