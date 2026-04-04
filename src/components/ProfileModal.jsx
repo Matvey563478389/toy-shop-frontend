@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Modal, Box, Typography, TextField, Button, Stack } from "@mui/material";
 import { useAuth } from "../context/AuthContext";
 
@@ -16,16 +16,23 @@ const style = {
 
 export const ProfileModal = ({ open, handleClose }) => {
   const { user, updateProfile } = useAuth();
-  const [data, setData] = useState({ name: "", address: "" });
+  const [data, setData] = useState({ name: "", address: "", phone: "" });
+
+  const updateFormData = useCallback(() => {
+    if (open && user) {
+      setData({ name: user.name, address: user.address || "", phone: user.phone || "" });
+    }
+  }, [open, user]);
 
   useEffect(() => {
-    if (user) setData({ name: user.name, address: user.address || "" });
-  }, [user, open]);
+    updateFormData();
+  }, [updateFormData]);
 
   const handleSubmit = async () => {
     try {
-      await updateProfile(data.name, data.address);
+      await updateProfile(data.name, data.address, data.phone);
       handleClose();
+      // eslint-disable-next-line no-unused-vars
     } catch (e) {
       alert("Ошибка обновления");
     }
@@ -41,6 +48,12 @@ export const ProfileModal = ({ open, handleClose }) => {
             fullWidth
             value={data.name}
             onChange={(e) => setData({ ...data, name: e.target.value })}
+          />
+          <TextField
+            label="Телефон"
+            fullWidth
+            value={data.phone}
+            onChange={(e) => setData({ ...data, phone: e.target.value })}
           />
           <TextField
             label="Адрес"

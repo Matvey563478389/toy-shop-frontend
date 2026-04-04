@@ -22,7 +22,8 @@ export const LoginPage = () => {
     name: "",
     email: "",
     password: "",
-    address: ""
+    address: "",
+    phone: ""
   });
 
   const [error, setError] = useState("");
@@ -69,6 +70,14 @@ export const LoginPage = () => {
                   required
                   value={formData.name}
                   onChange={handleChange}
+                />
+                <TextField
+                  label="Телефон"
+                  name="phone"
+                  fullWidth
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="+7 (___) ___-__-__"
                 />
                 <TextField
                   label="Адрес доставки"

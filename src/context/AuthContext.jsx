@@ -43,8 +43,8 @@ export const AuthProvider = ({ children }) => {
     setUser(userRes.data);
   };
 
-  const updateProfile = async (name, address) => {
-    const res = await api.put('/user/profile', { name, address }); // Предполагаем такой роут
+  const updateProfile = async (name, address, phone) => {
+    const res = await api.put('/user/profile', { name, address, phone });
     setUser(res.data);
     return res.data;
   };
