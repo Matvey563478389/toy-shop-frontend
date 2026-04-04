@@ -21,7 +21,8 @@ export const LoginPage = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    password: ""
+    password: "",
+    address: ""
   });
 
   const [error, setError] = useState("");
@@ -60,14 +61,26 @@ export const LoginPage = () => {
         <form onSubmit={handleSubmit}>
           <Stack spacing={2}>
             {!isLoginView && (
-              <TextField
-                label="Имя"
-                name="name"
-                fullWidth
-                required
-                value={formData.name}
-                onChange={handleChange}
-              />
+              <>
+                <TextField
+                  label="Имя"
+                  name="name"
+                  fullWidth
+                  required
+                  value={formData.name}
+                  onChange={handleChange}
+                />
+                <TextField
+                  label="Адрес доставки"
+                  name="address"
+                  fullWidth
+                  multiline
+                  rows={2}
+                  value={formData.address}
+                  onChange={handleChange}
+                  placeholder="Город, улица, дом..."
+                />
+              </>
             )}
 
             <TextField

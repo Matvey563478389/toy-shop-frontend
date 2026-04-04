@@ -43,13 +43,19 @@ export const AuthProvider = ({ children }) => {
     setUser(userRes.data);
   };
 
+  const updateProfile = async (name, address) => {
+    const res = await api.put('/user/profile', { name, address }); // Предполагаем такой роут
+    setUser(res.data);
+    return res.data;
+  };
+
   const logout = () => {
     localStorage.removeItem('token');
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, register, updateProfile, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );
