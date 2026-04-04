@@ -18,6 +18,8 @@ import AppsIcon from '@mui/icons-material/Apps';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
+import PeopleIcon from '@mui/icons-material/People';
+import CategoryIcon from '@mui/icons-material/Category';
 import {useNavigate} from "react-router-dom";
 import {useAuth} from "../context/AuthContext.jsx";
 
@@ -74,6 +76,27 @@ export const SideBar = () => {
             <ListItemText primary="О нас" />
           </ListItemButton>
         </ListItem>
+
+        {user?.role === 'admin' && (
+          <>
+            <Divider sx={{ my: 1 }} />
+            <Typography variant="caption" sx={{ px: 2, color: 'text.secondary' }}>
+              АДМИН ПАНЕЛЬ
+            </Typography>
+            <ListItem disablePadding>
+              <ListItemButton onClick={() => navigate("/admin/users")}>
+                <ListItemIcon><PeopleIcon /></ListItemIcon>
+                <ListItemText primary="Пользователи" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton onClick={() => navigate("/admin/toys")}>
+                <ListItemIcon><CategoryIcon /></ListItemIcon>
+                <ListItemText primary="Товары" />
+              </ListItemButton>
+            </ListItem>
+          </>
+        )}
       </List>
 
       <Box sx={{ flexGrow: 1 }} />
