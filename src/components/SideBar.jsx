@@ -13,6 +13,8 @@ import {
   CircularProgress
 } from "@mui/material";
 
+import ViewListIcon from '@mui/icons-material/ViewList';
+import DvrIcon from '@mui/icons-material/Dvr';
 import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import AppsIcon from '@mui/icons-material/Apps';
@@ -75,6 +77,13 @@ export const SideBar = () => {
           </ListItem>
 
           <ListItem disablePadding>
+            <ListItemButton onClick={() => navigate("/orders")}>
+              <ListItemIcon><ViewListIcon /></ListItemIcon>
+              <ListItemText primary="Мои заказы" />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem disablePadding>
             <ListItemButton onClick={() => navigate("/about")}>
               <ListItemIcon><InfoIcon /></ListItemIcon>
               <ListItemText primary="О нас" />
@@ -97,6 +106,12 @@ export const SideBar = () => {
                 <ListItemButton onClick={() => navigate("/admin/toys")}>
                   <ListItemIcon><CategoryIcon /></ListItemIcon>
                   <ListItemText primary="Товары" />
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton onClick={() => navigate("/admin/orders")}>
+                  <ListItemIcon><DvrIcon /></ListItemIcon>
+                  <ListItemText primary="Управление заказами" />
                 </ListItemButton>
               </ListItem>
             </>

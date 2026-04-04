@@ -15,7 +15,7 @@ export const CatalogPage = () => {
   const [loading, setLoading] = useState(true);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [page, setPage] = useState(1);
-  const itemsPerPage = 9;
+  const itemsPerPage = 8;
 
   const { user } = useAuth();
   const { cart, addToCart } = useCart();

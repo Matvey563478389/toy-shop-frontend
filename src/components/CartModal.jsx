@@ -17,11 +17,44 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import CloseIcon from '@mui/icons-material/Close';
 import { useCart } from "../context/CartContext";
+import {useAuth} from "../context/AuthContext.jsx";
+import api from "../shared/api.js";
 
 export const CartModal = ({ open, onClose }) => {
-  const { cart, updateQuantity, removeFromCart } = useCart();
+  const { cart, updateQuantity, removeFromCart, clearCart } = useCart();
+  const { user } = useAuth();
 
   const totalSum = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+
+  const handleCreateOrder = async () => {
+    if (!user) {
+      alert("Пожалуйста, войдите в систему, чтобы оформить заказ");
+      return;
+    }
+
+    if (!user.address || !user.phone) {
+      alert("Пожалуйста, заполните адрес и телефон в профиле");
+      return;
+    }
+
+    try {
+      const orderData = {
+        items: cart,
+        totalPrice: totalSum,
+        address: user.address,
+        phone: user.phone
+      };
+
+      await api.post('/order', orderData);
+      alert("Заказ успешно оформлен!");
+      clearCart();
+      onClose();
+    } catch (error) {
+      console.error(error);
+      alert("Ошибка при создании заказа");
+    }
+  };
 
   return (
     <Drawer anchor="right" open={open} onClose={onClose}>
@@ -90,7 +123,13 @@ export const CartModal = ({ open, onClose }) => {
                 {totalSum} ₽
               </Typography>
             </Box>
-            <Button variant="contained" fullWidth size="large" sx={{ borderRadius: 2 }}>
+            <Button
+              variant="contained"
+              fullWidth
+              size="large"
+              sx={{ borderRadius: 2 }}
+              onClick={handleCreateOrder}
+            >
               Оформить заказ
             </Button>
           </Box>
