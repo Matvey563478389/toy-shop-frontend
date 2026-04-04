@@ -1,21 +1,10 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Typography, Box } from "@mui/material";
 import { MainLayout } from "./layouts/MainLayout";
-
-const HomePage = () => (
-  <Box>
-    <Typography variant="h4" gutterBottom>Главная страница</Typography>
-    <Typography variant="body1">Контент главной страницы подтянулся успешно.</Typography>
-  </Box>
-);
-
-const AboutPage = () => (
-  <Box>
-    <Typography variant="h4" gutterBottom>О нас</Typography>
-    <Typography variant="body1">Здесь будет информация о проекте.</Typography>
-  </Box>
-);
+import {HomePage} from "./pages/HomePage.jsx";
+import {AboutPage} from "./pages/AboutPage.jsx";
+import {CatalogPage} from "./pages/CatalogPage.jsx";
+import {LoginPage} from "./pages/LoginPage.jsx";
 
 export default function App() {
   return (
@@ -23,7 +12,9 @@ export default function App() {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
+          <Route path="catalog" element={<CatalogPage />} />
           <Route path="about" element={<AboutPage />} />
+          <Route path="login" element={<LoginPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
