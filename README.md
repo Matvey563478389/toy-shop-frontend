@@ -1,16 +1,118 @@
-# React + Vite
+# Магазин игрушек - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Современное веб-приложение для интернет-магазина игрушек, построенное на React с использованием Material-UI.
 
-Currently, two official plugins are available:
+## 🚀 Функционал
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Для пользователей
+- **📦 Каталог товаров** - Просмотр и фильтрация игрушек
+- **🛒 Корзина** - Добавление товаров, изменение количества, удаление
+- **👤 Профиль** - Редактирование личных данных (имя, адрес, телефон)
+- **📋 Заказы** - Просмотр истории заказов и их статусов
+- **🔐 Аутентификация** - Регистрация и вход в систему
+- **📱 Адаптивный дизайн** - Корректное отображение на мобильных устройствах
 
-## React Compiler
+### Для администраторов
+- **👥 Управление пользователями** - Просмотр всех пользователей и их данных
+- **🧸 Управление товарами** - Добавление, редактирование и удаление игрушек
+- **📦 Управление заказами** - Просмотр заказов и изменение их статусов
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Технологический стек
 
-## Expanding the ESLint configuration
+- **React 18** - Основной фреймворк
+- **Vite** - Сборщик проекта
+- **Material-UI (MUI)** - UI библиотека компонентов
+- **React Router** - Маршрутизация приложения
+- **Axios** - HTTP клиент для API запросов
+- **ESLint** - Линтинг кода
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📦 Установка и запуск
+
+### Требования
+- Node.js 16+
+- npm или yarn
+
+### Установка зависимостей
+```bash
+npm install
+```
+
+### Запуск разработки
+```bash
+npm run dev
+```
+
+### Сборка для продакшена
+```bash
+npm run build
+```
+
+### Предварительный просмотр сборки
+```bash
+npm run preview
+```
+
+### Линтинг
+```bash
+npm run lint
+```
+
+## 📁 Структура проекта
+
+```
+src/
+├── components/          # Переиспользуемые компоненты
+│   ├── CartModal.jsx   # Модальное окно корзины
+│   ├── ProfileModal.jsx # Модальное окно профиля
+│   └── SideBar.jsx     # Боковая навигация
+├── context/            # React Context
+│   ├── AuthContext.jsx # Контекст аутентификации
+│   └── CartContext.jsx # Контекст корзины
+├── layouts/            # Компоновки страниц
+│   └── MainLayout.jsx  # Основная компоновка
+├── pages/              # Страницы приложения
+│   ├── admin/          # Административные страницы
+│   │   ├── AdminUsersPage.jsx
+│   │   ├── AdminToysPage.jsx
+│   │   └── AdminOrdersPage.jsx
+│   ├── AboutPage.jsx
+│   ├── CatalogPage.jsx
+│   ├── HomePage.jsx
+│   ├── LoginPage.jsx
+│   └── OrderPage.jsx
+├── shared/             # Общие утилиты
+│   └── api.js          # Настройки API клиента
+├── App.jsx             # Главный компонент приложения
+├── main.jsx            # Точка входа
+└── index.css           # Глобальные стили
+```
+
+## 🔧 Конфигурация
+
+### API
+Базовый URL API настраивается в файле `src/shared/api.js`. По умолчанию используется:
+```javascript
+baseURL: 'http://localhost:8080/api'
+```
+
+### Переменные окружения
+Создайте файл `.env.local` для локальной конфигурации:
+```
+VITE_API_URL=http://localhost:8080/api
+```
+
+## 🎨 Особенности UI
+
+- **Material-UI компоненты** - Современный и консистентный дизайн
+- **Адаптивная верстка** - Оптимизация для мобильных устройств
+- **Темная/светлая тема** - Возможность переключения тем
+- **Анимации и переходы** - Плавные пользовательские взаимодействия
+
+## 🔄 Рабочий процесс
+
+1. **Пользователь** просматривает каталог товаров
+2. **Добавляет** понравившиеся игрушки в корзину
+3. **Авторизуется** для оформления заказа
+4. **Заполняет** профиль (адрес, телефон)
+5. **Оформляет** заказ через корзину
+6. **Отслеживает** статус заказа в личном кабинете
