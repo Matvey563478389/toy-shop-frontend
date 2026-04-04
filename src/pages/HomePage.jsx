@@ -3,8 +3,6 @@ import {
   Typography,
   Button,
   Container,
-  Grid,
-  Paper,
   Stack,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
